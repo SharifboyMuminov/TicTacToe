@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:tic_tac_toe/utils/app_colors.dart';
 
 import 'screens/home_screen/home_screen.dart';
 
@@ -26,7 +27,10 @@ class MyApp extends StatelessWidget {
         ScreenUtil.init(context);
         return MaterialApp(
           debugShowCheckedModeBanner: false,
-          theme: ThemeData(useMaterial3: false),
+          theme: ThemeData(
+            useMaterial3: false,
+            scaffoldBackgroundColor: AppColors.primaryColor,
+          ),
           home: child,
         );
       },
