@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:tic_tac_toe/utils/app_colors.dart';
 
 class AppTextStyle {
+  AppTextStyle._();
+
   static TextStyle robotoThin = const TextStyle(
     fontFamily: "Roboto",
     fontWeight: FontWeight.w200,

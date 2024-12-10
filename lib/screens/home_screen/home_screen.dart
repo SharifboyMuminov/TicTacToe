@@ -15,7 +15,12 @@ class _HomeScreenState extends State<HomeScreen> {
   List<String> displayXO = ['', '', '', '', '', '', '', '', ''];
 
   String winner = "";
+  int playerXWinnerCount = 0;
+
+  int playerOWinnerCount = 0;
+
   List<int> winnerIndex = [];
+  bool turn = false;
 
   @override
   Widget build(BuildContext context) {
@@ -29,11 +34,48 @@ class _HomeScreenState extends State<HomeScreen> {
         right: false,
         child: Column(
           children: [
-            Text(
-              winner,
-              style: AppTextStyle.coinyRegular.copyWith(
-                fontSize: 48.sp,
-                color: AppColors.white,
+            Padding(
+              padding: EdgeInsets.all(25.we),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    children: [
+                      Text(
+                        "Player O",
+                        style: AppTextStyle.coinyRegular.copyWith(
+                          fontSize: 28.sp,
+                          color: AppColors.white,
+                        ),
+                      ),
+                      Text(
+                        playerOWinnerCount.toString(),
+                        style: AppTextStyle.coinyRegular.copyWith(
+                          fontSize: 28.sp,
+                          color: AppColors.white,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      Text(
+                        "Player X",
+                        style: AppTextStyle.coinyRegular.copyWith(
+                          fontSize: 28.sp,
+                          color: AppColors.white,
+                        ),
+                      ),
+                      Text(
+                        playerXWinnerCount.toString(),
+                        style: AppTextStyle.coinyRegular.copyWith(
+                          fontSize: 28.sp,
+                          color: AppColors.white,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
               ),
             ),
             Expanded(
@@ -51,8 +93,16 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: GestureDetector(
                         onTap: () {
                           setState(() {
-                            displayXO[index] = "X";
-                            checkWinner();
+                            if (displayXO[index].isEmpty &&
+                                winnerIndex.isEmpty) {
+                              if (turn) {
+                                displayXO[index] = "O";
+                              } else {
+                                displayXO[index] = "X";
+                              }
+                              turn = !turn;
+                              checkWinner();
+                            }
                           });
                         },
                         child: AnimatedContainer(
@@ -67,7 +117,9 @@ class _HomeScreenState extends State<HomeScreen> {
                             child: Text(
                               displayXO[index],
                               style: AppTextStyle.coinyRegular.copyWith(
-                                color: AppColors.primaryColor,
+                                color: winnerIndex.contains(index)
+                                    ? AppColors.white
+                                    : AppColors.primaryColor,
                                 fontSize: 65.sp,
                               ),
                             ),
@@ -79,6 +131,14 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             ),
+            Text(
+              winner,
+              style: AppTextStyle.coinyRegular.copyWith(
+                fontSize: 28.sp,
+                color: AppColors.white,
+              ),
+            ),
+            20.getH(),
           ],
         ),
       ),
@@ -101,16 +161,16 @@ class _HomeScreenState extends State<HomeScreen> {
       String a = displayXO[condition[0]];
       String b = displayXO[condition[1]];
       String c = displayXO[condition[2]];
-      // debugPrint(condition.toString());
-      // debugPrint("a = $a");
-      // debugPrint("b = $b");
-      // debugPrint("c = $c");
 
       if (a.isNotEmpty && a == b && b == c) {
-        debugPrint("Hello");
         setState(() {
-          winner = a;
+          winner = "Player $a wins!";
           winnerIndex = condition;
+          if (a == "X") {
+            playerXWinnerCount++;
+          } else {
+            playerOWinnerCount++;
+          }
         });
       }
     }
