@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:tic_tac_toe/screens/home_screen/widget/home_item.dart';
+import 'package:tic_tac_toe/screens/widget/play_again_button.dart';
 import 'package:tic_tac_toe/utils/app_colors.dart';
 import 'package:tic_tac_toe/utils/app_size.dart';
 import 'package:tic_tac_toe/utils/app_text_style.dart';
@@ -79,6 +81,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             Expanded(
+              flex: 2,
               child: GridView(
                 physics: const NeverScrollableScrollPhysics(),
                 padding: EdgeInsets.symmetric(horizontal: 15.we),
@@ -88,10 +91,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: List.generate(
                   displayXO.length,
                   (index) {
-                    return Padding(
-                      padding: EdgeInsets.all(5.we),
-                      child: GestureDetector(
-                        onTap: () {
+                    bool isActiveColorButton = winnerIndex.contains(index);
+                    return HomeItem(
+                        isActiveColorButton: isActiveColorButton,
+                        title: displayXO[index],
+                        onTab: () {
                           setState(() {
                             if (displayXO[index].isEmpty &&
                                 winnerIndex.isEmpty) {
@@ -104,41 +108,29 @@ class _HomeScreenState extends State<HomeScreen> {
                               checkWinner();
                             }
                           });
-                        },
-                        child: AnimatedContainer(
-                          duration: const Duration(milliseconds: 200),
-                          decoration: BoxDecoration(
-                            color: winnerIndex.contains(index)
-                                ? AppColors.accentColor
-                                : AppColors.secondaryColor,
-                            borderRadius: BorderRadius.circular(20.r),
-                          ),
-                          child: Center(
-                            child: Text(
-                              displayXO[index],
-                              style: AppTextStyle.coinyRegular.copyWith(
-                                color: winnerIndex.contains(index)
-                                    ? AppColors.white
-                                    : AppColors.primaryColor,
-                                fontSize: 65.sp,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    );
+                        });
                   },
                 ),
               ),
             ),
-            Text(
-              winner,
-              style: AppTextStyle.coinyRegular.copyWith(
-                fontSize: 28.sp,
-                color: AppColors.white,
+            Expanded(
+              flex: 1,
+              child: Column(
+                children: [
+                  Text(
+                    winner,
+                    style: AppTextStyle.coinyRegular.copyWith(
+                      fontSize: 30.sp,
+                      color: AppColors.white,
+                    ),
+                  ),
+                  15.getH(),
+                  PlayAgainButton(onTab: () {
+                    onTabPlayAgain();
+                  }),
+                ],
               ),
             ),
-            20.getH(),
           ],
         ),
       ),
@@ -174,5 +166,14 @@ class _HomeScreenState extends State<HomeScreen> {
         });
       }
     }
+  }
+
+  void onTabPlayAgain() {
+    setState(() {
+      displayXO = ['', '', '', '', '', '', '', '', ''];
+      winner = "";
+      winnerIndex = [];
+      turn = false;
+    });
   }
 }
