@@ -123,7 +123,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       color: AppColors.white,
                     ),
                   ),
-                  15.getH(),
+                  20.getH(),
                   PlayAgainButton(onTab: () {
                     onTabPlayAgain();
                   }),

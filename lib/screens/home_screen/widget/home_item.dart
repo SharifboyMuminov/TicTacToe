@@ -23,6 +23,7 @@ class HomeItem extends StatelessWidget {
       child: GestureDetector(
         onTap: onTab,
         child: AnimatedContainer(
+          alignment: Alignment.center,
           duration: const Duration(milliseconds: 200),
           decoration: BoxDecoration(
             color: isActiveColorButton
@@ -30,15 +31,14 @@ class HomeItem extends StatelessWidget {
                 : AppColors.secondaryColor,
             borderRadius: BorderRadius.circular(20.r),
           ),
-          child: Center(
-            child: Text(
-              title,
-              style: AppTextStyle.coinyRegular.copyWith(
-                color: isActiveColorButton
-                    ? AppColors.white
-                    : AppColors.primaryColor,
-                fontSize: 65.sp,
-              ),
+          child: Text(
+            title,
+            textAlign: TextAlign.center,
+            style: AppTextStyle.coinyRegular.copyWith(
+              color: isActiveColorButton
+                  ? AppColors.white
+                  : AppColors.primaryColor,
+              fontSize: 65.sp,
             ),
           ),
         ),

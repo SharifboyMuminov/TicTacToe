@@ -24,13 +24,20 @@ class MyApp extends StatelessWidget {
       designSize: const Size(414, 896),
       builder: (context, child) {
         ScreenUtil.init(context);
-        return MaterialApp(
-          debugShowCheckedModeBanner: false,
-          theme: ThemeData(
-            useMaterial3: false,
-            scaffoldBackgroundColor: AppColors.primaryColor,
+        return AnnotatedRegion(
+          value: const SystemUiOverlayStyle(
+            statusBarColor: Colors.transparent,
+            statusBarIconBrightness: Brightness.dark,
+            systemNavigationBarIconBrightness: Brightness.light,
           ),
-          home: child,
+          child: MaterialApp(
+            debugShowCheckedModeBanner: false,
+            theme: ThemeData(
+              useMaterial3: false,
+              scaffoldBackgroundColor: AppColors.primaryColor,
+            ),
+            home: child,
+          ),
         );
       },
       child: const SplashScreen(),
