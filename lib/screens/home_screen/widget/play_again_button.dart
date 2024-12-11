@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:tic_tac_toe/screens/widget/my_zoom_tap_animation.dart';
+import 'package:tic_tac_toe/screens/home_screen/widget/my_zoom_tap_animation.dart';
 import 'package:tic_tac_toe/utils/app_colors.dart';
 import 'package:tic_tac_toe/utils/app_size.dart';
 import 'package:tic_tac_toe/utils/app_text_style.dart';

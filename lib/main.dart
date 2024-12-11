@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:tic_tac_toe/screens/splash/splash_screen.dart';
 import 'package:tic_tac_toe/utils/app_colors.dart';
-
-import 'screens/home_screen/home_screen.dart';
 
 void main(List<String> args) async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -34,7 +33,7 @@ class MyApp extends StatelessWidget {
           home: child,
         );
       },
-      child: HomeScreen(),
+      child: SplashScreen(),
     );
   }
 }

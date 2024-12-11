@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tic_tac_toe/screens/home_screen/widget/home_item.dart';
-import 'package:tic_tac_toe/screens/widget/play_again_button.dart';
+import 'package:tic_tac_toe/screens/home_screen/widget/play_again_button.dart';
 import 'package:tic_tac_toe/utils/app_colors.dart';
 import 'package:tic_tac_toe/utils/app_size.dart';
 import 'package:tic_tac_toe/utils/app_text_style.dart';
@@ -26,8 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    width = MediaQuery.of(context).size.width;
-    height = MediaQuery.of(context).size.height;
+
 
     return Scaffold(
       body: SafeArea(
