@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:showcaseview/showcaseview.dart';
+import 'package:tic_tac_toe/screens/home_screen/new_screen.dart';
 import 'package:tic_tac_toe/screens/splash/splash_screen.dart';
 import 'package:tic_tac_toe/utils/app_colors.dart';
 
@@ -33,14 +35,14 @@ class MyApp extends StatelessWidget {
           child: MaterialApp(
             debugShowCheckedModeBanner: false,
             theme: ThemeData(
-              useMaterial3: false,
+              useMaterial3: true,
               scaffoldBackgroundColor: AppColors.primaryColor,
             ),
             home: child,
           ),
         );
       },
-      child: const SplashScreen(),
+      child: NewScreenRun(),
     );
   }
 }
